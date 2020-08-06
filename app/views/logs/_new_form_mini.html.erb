@@ -1,0 +1,15 @@
+<%= form_for(@log) do |f| %>
+  <%= hidden_field_tag :article_id, @article.id %>
+  <%= hidden_field_tag :list_id, @list.id if @list.present? %>
+  <p class="add-camplog"><i class="fas fa-utensils"></i> キャンプログを追加する</p>
+  <div class="row">
+    <div class="col-md-9">
+      <div class="field">
+        <%= f.text_area :content, placeholder: "キャンプメモ" %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <%= f.submit "追加", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

@@ -1,5 +1,6 @@
 <% provide(:title, "#{@article.title}") %>
 <% @comments  = @article.feed_comment(@article.id) %>
+<% @logs  = @article.feed_log(@article.id) %>
 <div class="container">
   <div class="row">
     <div class="col-md-4">
@@ -32,6 +33,12 @@
         <h5>おすすめ度：</h5><h4><%= @article.popularity %></h4>
       </div>
     </div>
+    <% if current_user == @article.user %>
+      <div class="log">
+        <%= render "logs/feed_logs" %>
+        <%= render "logs/new" %>
+      </div>
+    <% end %>
     <div class="comment">
       <%= render "comments/feed_comments" %>
       <%= render "comments/new" %>

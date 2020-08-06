@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="title-camplog">キャンプログ (<%= @logs.count %>)</h3>
+  </div>
+</div>
+<% if @logs.any? %>
+  <ul class="logs">
+    <%= render @logs %>
+  </ul>
+<% end %>

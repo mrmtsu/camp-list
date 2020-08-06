@@ -2,6 +2,7 @@ class Article < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :logs, dependent: :destroy
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
 
@@ -22,6 +23,10 @@ class Article < ApplicationRecord
 
   def feed_comment(article_id)
     Comment.where("article_id = ?", article_id)
+  end
+
+  def feed_log(article_id)
+    Log.where("article_id = ?", article_id)
   end
 
   private

@@ -22,6 +22,9 @@ end
                popularity: 5,
                camp_memo: "早く欲しい！",
                user_id: 1)
+  article = Article.first
+  Log.create!(article_id: article.id,
+    content: article.camp_memo)
 end
 
 # リレーションシップ

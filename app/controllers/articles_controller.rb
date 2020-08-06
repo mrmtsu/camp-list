@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
     @article = current_user.articles.build(article_params)
     if @article.save
       flash[:success] = "投稿が登録されました！"
+      Log.create(article_id: @article.id, content: @article.camp_memo)
       redirect_to article_path(@article)
     else
       render 'articles/new'
@@ -19,6 +20,7 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
     @comment = Comment.new
+    @log = Log.new
   end
 
   def edit
