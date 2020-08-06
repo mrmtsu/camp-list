@@ -9,9 +9,13 @@
   <%= render 'users/favorite_form' %>
   <span class="description"><%= article.description %></span><br>
   <span class="prefecture_id">場所：<%= article.prefecture.name %></span>
+  <span class="camp_times">行った回数：<%= article.logs.count %>回　</span>
   <span class="shooting">撮影日：<%= article.shooting %></span>
   <span class="popularity">おすすめ度：<%= article.popularity %></span><br>
   <span class="reference"><%= link_to "アイテム", article.reference, target: :_blank %></span>
+  <% if current_user == article.user %>
+    <%= render "logs/new_form_mini" %>
+  <% end %>
   <span class="timestamp">
     <%= time_ago_in_words(article.created_at) %>前に投稿
   </span>

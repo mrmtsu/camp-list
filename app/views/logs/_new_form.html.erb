@@ -1,0 +1,13 @@
+<%= form_for(@log) do |f| %>
+  <%= hidden_field_tag :article_id, @article.id %>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-1">
+      <div class="field">
+        <%= f.text_area :content, placeholder: "キャンプメモ" %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <%= f.submit "ログ追加", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
