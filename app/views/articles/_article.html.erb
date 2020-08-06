@@ -1,0 +1,16 @@
+<li id="article-<%= article.id %>">
+  <%= link_to gravatar_for(article.user, size: 50), article.user %>
+  <span class="title"><%= link_to article.title, article_path(article) %></span>
+  <span class="description"><%= article.description %></span><br>
+  <span class="prefecture_id">場所：<%= article.prefecture_id %></span>
+  <span class="shooting">撮影日：<%= article.shooting %></span>
+  <span class="popularity">おすすめ度：<%= article.popularity %></span><br>
+  <span class="reference"><%= link_to "アイテム", article.reference, target: :_blank %></span>
+  <span class="timestamp">
+    <%= time_ago_in_words(article.created_at) %>前に投稿
+  </span>
+  <% if current_user.admin? || (current_user == article.user) %>
+    <%= link_to "削除", article_path(article), method: :delete,
+                       data: { confirm: "本当に削除しますか？" } %>
+  <% end %>
+</li>

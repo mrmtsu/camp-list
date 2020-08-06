@@ -1,0 +1,42 @@
+<% provide(:title, "投稿情報の編集") %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(@article) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class = 'form-group'>
+          <%= f.label :title %> [タイトル]　<span class="input-need">※必須</span>
+          <%= f.text_field :title, class: 'form-control', id: 'article_title' %>
+        </div>
+        <div class = 'form-group'>
+          <%= f.label :description %> [説明]　<span class="input-unneed">※任意</span>
+          <%= f.text_field :description, size: "60x4", class: 'form-control', id: 'article_description' %>
+        </div>
+        <div class = 'form-group'>
+          <%= f.label :prefecture_id %> [場所]　<span class="input-unneed">※任意</span>
+          <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, class: "form-control", id: 'article_prefecture_id' %>
+        </div>
+        <div class = 'form-group'>
+          <%= f.label :shooting %> [撮影日]　<span class="input-unneed">※任意</span>
+          <%= f.date_select :shooting, use_month_numbers: true, prompt:"--", start_year:Time.now.year, end_year:1900, default: Date.new(1989, 1, 1), class: 'form-control', id: 'article_shooting' %>
+        </div>
+        <div class = 'form-group'>
+          <%= f.label :reference %> [アイテム参照用URL]　<span class="input-unneed">※任意</span>
+          <%= f.text_field :reference, class: 'form-control', id: 'article_reference' %>
+        </div>
+        <div class = 'form-group'>
+          <%= f.label :popularity %> [1~5]　<span class="input-unneed">※任意</span>
+          <%= f.text_field :popularity, class: 'form-control', id: 'article_popularity' %>
+        </div>
+        <div class = 'form-group'>
+          <%= f.label :camp_memo %> [キャンプメモ]　<span class="input-unneed">※任意</span>
+          <%= f.text_field :camp_memo, class: 'form-control', id: 'article_camp_memo' %>
+        </div>
+        <%= f.submit "更新する", class: "btn btn-primary" %>
+        <p></p>
+        <%= link_to "投稿を削除する", article_path(@article), method: :delete,
+                                  data: { confirm: "本当にこの投稿を削除してよろしいですか？" } %>
+      <% end %>
+    </div>
+  </div>
+</div>
