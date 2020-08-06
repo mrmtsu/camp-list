@@ -160,3 +160,127 @@ footer {
     border-bottom: 1px solid $gray-lighter;
   }
 }
+
+/* 投稿(Article) */
+.articles {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .user {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .description {
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
+  }
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+}
+
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}
+
+span.picture {
+  margin-top: 10px;
+  input {
+    border: 0;
+  }
+}
+
+.btn-record {
+  margin-top: 3em;
+}
+
+//// 料理登録ページ ////
+.input-need {
+  color: red;
+  font-size: 13px;
+}
+
+.input-unneed {
+  font-size: 13px;
+}
+
+//// 投稿個別ページ ////
+.article-user-title {
+  display: inline-block;
+}
+
+h2.article-title {
+  font-size: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.article-reference {
+  margin-top: 30px;
+}
+
+.article-prefecture_id {
+  margin-top: 30px;
+}
+
+.shooting {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  h5 {
+    font-size: 17px;
+  }
+}
+
+.title-shooting {
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.show-article-other-info {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.article-other-info {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.article-info {
+  h5 {
+    font-size: 16px;
+    display: inline-block;
+  }
+  h4 {
+    font-size: 20px;
+    display: inline-block;
+  }
+}
+
+.change-article {
+  display: inline-block;
+}
+
+.edit-article .delete-article {
+  font-size: 15px;
+}

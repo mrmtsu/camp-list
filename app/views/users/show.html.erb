@@ -19,4 +19,15 @@
       <% end %>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-9">
+      <% if @user.articles.any? %>
+        <h3>投稿 (<%= @user.articles.count %>)</h3>
+        <ol class="articles">
+          <%= render @articles %>
+        </ol>
+        <%= will_paginate @articles %>
+      <% end %>
+    </div>
+  </div>
 </div>

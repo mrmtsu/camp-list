@@ -1,3 +1,17 @@
-<center>
-  <h1>CAMP</h1>
-</center>
+<% if logged_in? %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <h3>CAMP LIST (<%= @feed_items.count %>)</h3>
+        <%= render 'shared/feed' %>
+      </div>
+      <div class="col-md-3">
+        <p><%= link_to "NEW POST", new_article_path, class: "btn btn-primary btn-lg btn-record" %></p>
+  	  </div>
+    </div>
+  </div>
+<% else %>
+  <center>
+    <h1>CAMP</h1>
+  </center>
+<% end %>
