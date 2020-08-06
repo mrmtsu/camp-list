@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Articles", type: :system do
   let!(:user) { create(:user) }
-  let!(:article) { create(:article, user: user) }
+  let!(:article) { create(:article, :picture, user: user) }
 
   describe "投稿登録ページ" do
     before do
@@ -37,8 +37,15 @@ RSpec.describe "Articles", type: :system do
         fill_in "アイテム参照用URL", with: "https://www.amazon.co.jp/NORTH-FACE-%E3%82%B6%E3%83%BB%E3%83%8E%E3%83%BC%E3%82%B9%E3%83%95%E3%82%A7%E3%82%A4%E3%82%B9-NV21800-%E3%82%B5%E3%83%95%E3%83%A9%E3%83%B3%E3%82%A4%E3%82%A8%E3%83%AD%E3%83%BC/dp/B07916HVGS/ref=sr_1_2?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&dchild=1&keywords=north+face+geo&qid=1596689562&sr=8-2"
         select '北海道', from: '場所'
         fill_in "おすすめ度", with: 5
+        attach_file "article[picture]", "#{Rails.root}/spec/fixtures/test_article.jpg"
         click_button "登録する"
         expect(page).to have_content "投稿が登録されました！"
+      end
+
+      it "画像無しで登録すると、デフォルト画像が割り当てられること" do
+        fill_in "タイトル", with: "行ってきた!"
+        click_button "登録する"
+        expect(page).to have_link(href: article_path(Article.first))
       end
 
       it "無効な情報で投稿登録を行うと投稿登録失敗のフラッシュが表示されること" do
@@ -83,6 +90,7 @@ RSpec.describe "Articles", type: :system do
         select '北海道', from: '場所'
         fill_in "アイテム参照用URL", with: "https://www.amazon.co.jp/NORTH-FACE-%E3%82%B6%E3%83%BB%E3%83%8E%E3%83%BC%E3%82%B9%E3%83%95%E3%82%A7%E3%82%A4%E3%82%B9-NV21800-%E3%82%B5%E3%83%95%E3%83%A9%E3%83%B3%E3%82%A4%E3%82%A8%E3%83%AD%E3%83%BC/dp/B07916HVGS/ref=sr_1_2?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&dchild=1&keywords=north+face+geo&qid=1596689562&sr=8-2"
         fill_in "おすすめ度", with: 1
+        attach_file "article[picture]", "#{Rails.root}/spec/fixtures/test_article2.jpg"
         click_button "更新する"
         expect(page).to have_content "投稿情報が更新されました！"
         expect(article.reload.title).to eq "編集：行ってきた!"
@@ -90,7 +98,8 @@ RSpec.describe "Articles", type: :system do
         expect(article.reload.prefecture_id).to eq 1
         expect(article.reload.reference).to eq "https://www.amazon.co.jp/NORTH-FACE-%E3%82%B6%E3%83%BB%E3%83%8E%E3%83%BC%E3%82%B9%E3%83%95%E3%82%A7%E3%82%A4%E3%82%B9-NV21800-%E3%82%B5%E3%83%95%E3%83%A9%E3%83%B3%E3%82%A4%E3%82%A8%E3%83%AD%E3%83%BC/dp/B07916HVGS/ref=sr_1_2?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&dchild=1&keywords=north+face+geo&qid=1596689562&sr=8-2"
         expect(article.reload.popularity).to eq 1
-      end
+        expect(article.reload.picture.url).to include "test_article2.jpg"
+    end
 
       it "無効な更新" do
         fill_in "タイトル", with: ""
@@ -119,6 +128,7 @@ RSpec.describe "Articles", type: :system do
         expect(page).to have_content article.shooting
         expect(page).to have_content article.reference
         expect(page).to have_content article.popularity
+        expect(page).to have_link nil, href: article_path(article), class: 'article-picture'
       end
     end
   end

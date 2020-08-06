@@ -3,6 +3,8 @@ require "rails_helper"
 RSpec.describe "投稿登録", type: :request do
   let!(:user) { create(:user) }
   let!(:article) { create(:article, user: user) }
+  let(:picture_path) { File.join(Rails.root, 'spec/fixtures/test_article.jpg') }
+  let(:picture) { Rack::Test::UploadedFile.new(picture_path) }
 
   context "ログインしているユーザーの場合" do
     before do
@@ -24,7 +26,8 @@ RSpec.describe "投稿登録", type: :request do
                                             prefecture_id: 1,
                                             shooting: "",
                                             popularity: 5,
-                                            camp_memo: "" } }
+                                            camp_memo: "",
+                                            picture: picture } }
       }.to change(Article, :count).by(1)
       follow_redirect!
       expect(response).to render_template('articles/show')
@@ -38,7 +41,8 @@ RSpec.describe "投稿登録", type: :request do
                                             prefecture_id: 1,
                                             shooting: "",
                                             popularity: 5,
-                                            camp_memo: "" } }
+                                            camp_memo: "",
+                                            picture: picture } }
       }.not_to change(Article, :count)
       expect(response).to render_template('articles/new')
     end

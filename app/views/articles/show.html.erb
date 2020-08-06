@@ -1,15 +1,22 @@
 <% provide(:title, "#{@article.title}") %>
 <div class="container">
   <div class="row">
-    <h2 class="article-title"><%= @article.title %></h2>
-    <div class="change-article">
-      <% if current_user == @article.user %>
-        <%= link_to "編集", edit_article_path(@article), class: 'edit-article' %>　
-      <% end %>
-      <% if current_user.admin? || (current_user == @article.user) %>
-        <%= link_to "削除", article_path(@article), method: :delete, class: 'delete-article',
-                                      data: { confirm: "本当に削除しますか？" } %>
-      <% end %>
+    <div class="col-md-4">
+      <span class="picture">
+        <%= link_to((image_tag @article.picture.thumb400.url), article_path(@article.id), class: 'article-picture') if @article.picture.url.present? %>
+      </span>
+    </div>
+    <div class="col-md-8">
+      <h2 class="article-name"><%= @article.title %></h2>
+      <div class="change-article">
+        <% if current_user == @article.user %>
+            <%= link_to "編集", edit_article_path(@article), class: 'edit-article' %>　
+        <% end %>
+        <% if current_user.admin? || (current_user == @article.user) %>
+            <%= link_to "削除", article_path(@article), method: :delete, class: 'delete-article',
+                                        data: { confirm: "本当に削除しますか？" } %>
+        <% end %>
+      </div>
     </div>
     <h4><%= @article.description %></h4>
     <h4 class="article-reference">アイテム：<%= link_to "#{@article.reference}", @article.reference, target: "_blank" %></h4>

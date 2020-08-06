@@ -284,3 +284,9 @@ h2.article-title {
 .edit-article .delete-article {
   font-size: 15px;
 }
+
+.article-picture img {
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
