@@ -1,0 +1,14 @@
+<%= form_for(@comment) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= hidden_field_tag :article_id, @article.id %>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-1">
+      <div class="field">
+        <%= f.text_area :content, placeholder: "コメントを追加..." %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <%= f.submit "コメント", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

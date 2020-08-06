@@ -9,6 +9,7 @@ ja:
     models:
       user: ユーザー
       article: 投稿
+      comment: コメント
     attributes:
       user:
         id: ID
@@ -30,6 +31,10 @@ ja:
         popularity: おすすめ度
         user_id: 作成者のID
         camp_memo: キャンプメモ
+      comment:
+        user_id: コメント投稿者のID
+        article_id: コメントされた投稿のID
+        content: コメント
   date:
     abbr_day_names:
       - 日

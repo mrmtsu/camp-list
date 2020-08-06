@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="title-comment">コメント (<%= "#{@article.comments.count}" %>)</h3>
+  </div>
+</div>
+<% if @comments.any? %>
+  <ul class="comments">
+    <%= render @comments %>
+  </ul>
+<% end %>

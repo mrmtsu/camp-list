@@ -1,4 +1,5 @@
 <% provide(:title, "#{@article.title}") %>
+<% @comments  = @article.feed_comment(@article.id) %>
 <div class="container">
   <div class="row">
     <div class="col-md-4">
@@ -21,7 +22,7 @@
     </div>
     <h4><%= @article.description %></h4>
     <h4 class="article-reference">アイテム：<%= link_to "#{@article.reference}", @article.reference, target: "_blank" %></h4>
-    <h4 class="article-prefecture_id">場所：<%= @article.prefecture_id %></h4>
+    <h4 class="article-prefecture_id">場所：<%= @article.prefecture.name %></h4>
     <div class="shooting">
       <h5 class="title-shooting">撮影日：</h5>
       <h5><%= @article.shooting %></h5>
@@ -30,6 +31,10 @@
       <div class="article-info">
         <h5>おすすめ度：</h5><h4><%= @article.popularity %></h4>
       </div>
+    </div>
+    <div class="comment">
+      <%= render "comments/feed_comments" %>
+      <%= render "comments/new" %>
     </div>
   </div>
 </div>
