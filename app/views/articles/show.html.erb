@@ -5,6 +5,7 @@
       <span class="picture">
         <%= link_to((image_tag @article.picture.thumb200.url), article_path(@article.id), class: 'article-picture') if @article.picture.url.present? %>
       </span>
+      <%= render 'users/favorite_form' %>
     </div>
     <div class="col-md-8">
       <h2 class="article-name"><%= @article.title %></h2>

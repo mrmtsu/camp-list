@@ -4,6 +4,8 @@ RSpec.describe "Users", type: :system do
   let!(:user) { create(:user) }
   let!(:admin_user) { create(:user, :admin) }
   let!(:other_user) { create(:user) }
+  let!(:article) { create(:article, user: user) }
+  let!(:other_article) { create(:article, user: other_user) }
 
   describe "ユーザー一覧ページ" do
     context "管理者ユーザーの場合" do
@@ -153,6 +155,41 @@ RSpec.describe "Users", type: :system do
 
       it "投稿のページネーションが表示されていることを確認" do
         expect(page).to have_css "div.pagination"
+      end
+    end
+
+    context "お気に入り登録/解除" do
+      before do
+        login_for_system(user)
+      end
+
+      it "投稿のお気に入り登録/解除ができること" do
+        expect(user.favorite?(article)).to be_falsey
+        user.favorite(article)
+        expect(user.favorite?(article)).to be_truthy
+        user.unfavorite(article)
+        expect(user.favorite?(article)).to be_falsey
+      end
+
+      it "お気に入り一覧ページが期待通り表示されること" do
+        visit favorites_path
+        expect(page).not_to have_css ".favorite-article"
+        user.favorite(article)
+        user.favorite(other_article)
+        visit favorites_path
+        expect(page).to have_css ".favorite-article", count: 2
+        expect(page).to have_content article.title
+        expect(page).to have_content article.description
+        expect(page).to have_content "articled by #{user.name}"
+        expect(page).to have_link user.name, href: user_path(user)
+        expect(page).to have_content other_article.title
+        expect(page).to have_content other_article.description
+        expect(page).to have_content "articled by #{other_user.name}"
+        expect(page).to have_link other_user.name, href: user_path(other_user)
+        user.unfavorite(other_article)
+        visit favorites_path
+        expect(page).to have_css ".favorite-article", count: 1
+        expect(page).to have_content article.title
       end
     end
   end

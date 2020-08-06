@@ -17,7 +17,7 @@ end
 10.times do |n|
   Article.create!(title: Faker::Food.dish,
                description: "あったら便利グッズ！",
-               reference: "https://www.amazon.co.jp/NORTH-FACE-%E3%82%B6%E3%83%BB%E3%83%8E%E3%83%BC%E3%82%B9%E3%83%95%E3%82%A7%E3%82%A4%E3%82%B9-NV21800-%E3%82%B5%E3%83%95%E3%83%A9%E3%83%B3%E3%82%A4%E3%82%A8%E3%83%AD%E3%83%BC/dp/B07916HVGS/ref=sr_1_2?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&dchild=1&keywords=north+face+geo&qid=1596689562&sr=8-2",
+               reference: "https://ec.snowpeak.co.jp/snowpeak/ja/%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%97/%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2/%E3%83%81%E3%82%BF%E3%83%B3%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%83%9E%E3%82%B0-300/p/26241",
                prefecture_id: 1,
                popularity: 5,
                camp_memo: "早く欲しい！",
