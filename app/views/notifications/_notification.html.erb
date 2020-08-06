@@ -1,0 +1,23 @@
+<% user = User.find(notification.from_user_id) %>
+<% article = Article.find(notification.article_id) %>
+<li id="notification-<%= notification.id %>">
+  <div>
+    <% if notification.variety == 1 %>
+      <p><%= notification.created_at.strftime("%Y/%m/%d(%a) %H:%M") %></p>
+      <p class="notification-message">あなたの投稿が<%= link_to user.name, user_path(user) %>さんにお気に入り登録されました。</p>
+    <% elsif notification.variety == 2 %>
+      <p><%= notification.created_at.strftime("%Y/%m/%d(%a) %H:%M") %></p>
+      <p class="notification-message">あなたの投稿に<%= link_to user.name, user_path(user) %>さんがコメントしました。
+      「<%= notification.content %>」</p>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <%= link_to((image_tag article.picture.url), article_path(article), class: 'article-picture') %>
+    </div>
+    <div class="col-md-7">
+      <p><%= link_to article.title, article_path(article) %></p>
+      <p><%= article.description %></p>
+    </div>
+  </div>
+</li>

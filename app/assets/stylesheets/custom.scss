@@ -337,3 +337,25 @@ a.unlike {
     border-top: 1px solid #e8e8e8;
   }
 }
+
+////通知 ////
+// 新しい通知があるときは赤文字にする
+li.new_notification > a > span {
+  color: red;
+}
+
+.notifications {
+  list-style: none;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .gravatar {
+    margin-right: 10px;
+    margin-top: -5px;
+  }
+}
+
+.notification-message {
+  font-size: 16px;
+}
