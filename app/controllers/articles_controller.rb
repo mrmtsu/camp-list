@@ -50,7 +50,7 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :description, :prefecture_id, :shooting,
-                                    :reference, :popularity, :camp_memo)
+                                    :reference, :popularity, :camp_memo, :picture)
   end
 
   def correct_user

@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
   belongs_to :user
   default_scope -> { order(created_at: :desc) }
+  mount_uploader :picture, PictureUploader
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
@@ -15,4 +16,13 @@ class Article < ApplicationRecord
               :less_than_or_equal_to => 5
             },
             allow_nil: true
+  validate  :picture_size
+
+  private
+
+  def picture_size
+    if picture.size > 5.megabytes
+      errors.add(:picture, "：5MBより大きい画像はアップロードできません。")
+    end
+  end
 end
