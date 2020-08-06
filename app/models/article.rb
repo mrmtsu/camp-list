@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
+  has_many :comments, dependent: :destroy
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
 
@@ -18,6 +19,10 @@ class Article < ApplicationRecord
             },
             allow_nil: true
   validate  :picture_size
+
+  def feed_comment(article_id)
+    Comment.where("article_id = ?", article_id)
+  end
 
   private
 
