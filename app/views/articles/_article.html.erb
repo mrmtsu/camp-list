@@ -1,9 +1,12 @@
+<% @article = article %>
+
 <li id="article-<%= article.id %>">
   <%= link_to gravatar_for(article.user, size: 50), article.user %>
   <span class="title"><%= link_to article.title, article_path(article) %></span>
   <span>
     <%= link_to((image_tag article.picture.thumb200.url), article_path(article.id), class: 'article-picture') if article.picture.url.present? %>
   </span>
+  <%= render 'users/favorite_form' %>
   <span class="description"><%= article.description %></span><br>
   <span class="prefecture_id">場所：<%= article.prefecture_id %></span>
   <span class="shooting">撮影日：<%= article.shooting %></span>

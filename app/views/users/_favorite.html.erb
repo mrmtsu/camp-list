@@ -1,0 +1,6 @@
+<%= link_to "/favorites/#{@article.id}/create",
+            method: :post,
+            class: 'like',
+            remote: true do %>
+  <div class="like-btn-like"><i class="fa fa-heart"></i> お気に入りに登録する</div>
+<% end %>
