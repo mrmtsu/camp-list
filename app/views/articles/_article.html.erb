@@ -1,26 +1,42 @@
 <% @article = article %>
-
 <li id="article-<%= article.id %>">
-  <%= link_to gravatar_for(article.user, size: 50), article.user %>
-  <span class="title"><%= link_to article.title, article_path(article) %></span>
-  <span>
-    <%= link_to((image_tag article.picture.thumb200.url), article_path(article.id), class: 'article-picture') if article.picture.url.present? %>
-  </span>
-  <%= render 'users/favorite_form' %>
-  <span class="description"><%= article.description %></span><br>
-  <span class="prefecture_id">場所：<%= article.prefecture.name %></span>
-  <span class="camp_times">行った回数：<%= article.logs.count %>回　</span>
-  <span class="shooting">撮影日：<%= article.shooting %></span>
-  <span class="popularity">おすすめ度：<%= article.popularity %></span><br>
-  <span class="reference"><%= link_to "アイテム", article.reference, target: :_blank %></span>
-  <% if current_user == article.user %>
-    <%= render "logs/new_form_mini" %>
-  <% end %>
-  <span class="timestamp">
-    <%= time_ago_in_words(article.created_at) %>前に投稿
-  </span>
-  <% if current_user.admin? || (current_user == article.user) %>
-    <%= link_to "削除", article_path(article), method: :delete,
-                       data: { confirm: "本当に削除しますか？" } %>
-  <% end %>
+  <div class="row">
+    <div class="col-md-4">
+      <span>
+        <%= link_to((image_tag article.picture.thumb200.url), article_path(article.id), class: 'article-picture') if article.picture.url.present? %>
+      </span>
+      <%= render 'users/favorite_form' %>
+    </div>
+    <div class="col-md-8 escape-float">
+      <h3 class="article-title"><%= link_to article.title, article_path(article) %></h3>
+      <div class="article-description"><%= article.description %></div>
+      <div class="article-user">posted by <%= link_to article.user.name, user_path(article.user) %></div>
+      <div class="article-other-info">
+        <span class="prefecture_id">場所：<%= article.prefecture.name %></span>
+        <span class="camp_times">行った回数：<%= article.logs.count %>回　</span>
+        <span class="shooting">撮影日：<%= article.shooting %></span>
+        <span class="popularity">おすすめ度：
+          <% if @article.popularity.present? %>
+            <%= "★" * article.popularity %><%= "☆" * (5 - article.popularity) %>
+          <% end %>
+        </span>
+      </div>
+      <% if current_user == article.user %>
+        <%= render "logs/new_form_mini" %>
+      <% end %>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="article-created-at">
+            <%= time_ago_in_words(article.created_at) %>前に投稿
+          </div>
+        </div>
+        <% if current_user.admin? || (current_user == article.user) %>
+          <div class="col-md-6">
+            <%= link_to "削除", article_path(article), method: :delete,
+                               data: { confirm: "本当に削除しますか？" } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </li>

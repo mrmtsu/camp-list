@@ -1,12 +1,14 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h3>　通知一覧</h3>
+<div id="fh5co-portfolio">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>　通知一覧</h3>
+      </div>
     </div>
+    <% if @notifications.present? %>
+      <ol class="notifications">
+        <%= render @notifications %>
+      </ol>
+    <% end %>
   </div>
-  <% if @notifications.present? %>
-    <ol class="notifications">
-      <%= render @notifications %>
-    </ol>
-  <% end %>
 </div>
