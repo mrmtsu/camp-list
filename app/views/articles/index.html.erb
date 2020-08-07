@@ -1,0 +1,14 @@
+<% provide(:title, '投稿一覧') %>
+<div id="fh5co-portfolio">
+  <div class="container">
+    <% if @search_word.present? %>
+      <h3>”<%= @search_word %>”の検索結果：<%= @articles.count %>件</h3>
+    <% else %>
+      <h3>投稿一覧</h3>
+    <% end %>
+    <ul class="articles">
+      <%= render @articles %>
+    </ul>
+    <%= will_paginate %>
+  </div>
+</div>
