@@ -130,8 +130,8 @@ RSpec.describe "Articles", type: :system do
         expect(page).to have_content article.description
         expect(page).to have_content article.prefecture_id
         expect(page).to have_content article.shooting
-        expect(page).to have_content article.reference
-        expect(page).to have_content article.popularity
+        expect(page).to have_no_content article.reference
+        expect(page).to have_no_content article.popularity
         expect(page).to have_link nil, href: article_path(article), class: 'article-picture'
       end
     end
