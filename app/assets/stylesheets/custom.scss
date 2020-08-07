@@ -1,6 +1,3 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
 // ミックスイン
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -8,26 +5,10 @@
   box-sizing: border-box;
 }
 
+$main-magenta: #dd356e;
+$main-yellow: #fee856;
+
 // 全ページ共通
-body {
-  padding-top: 60px;
-}
-
-section {
-  overflow: auto;
-}
-
-textarea {
-  resize: vertical;
-}
-
-.center {
-  text-align: center;
-  h1 {
-    margin-bottom: 10px;
-  }
-}
-
 input,
 textarea,
 select,
@@ -69,60 +50,64 @@ input {
   margin-left: 0;
 }
 
-// テキストの見栄え
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  line-height: 1;
+.btn-record {
+  margin-top: 3em;
+  color: black;
+  background-color: $main-yellow;
+  border-color: $main-yellow;
 }
 
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
+// 「CSV出力」ボタン
+.btn-csv {
+  color: black;
+  background-color: palegreen;
+  border-color: palegreen;
 }
 
-h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: #777;
+//// ヘッダー ////
+.menu-1 a:hover {
+  text-decoration: none;
+  text-decoration-width: 1px;
 }
 
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
-}
-
-// ヘッダー
-.navbar ul {
-  margin-top: 12px;
-  margin-bottom: 12px;
+// 上下幅
+.fh5co-nav .top-menu {
+  padding: 18px 0;
 }
 #logo {
-  float: left;
-  margin-top: 10px;
-  margin-bottom: 10px;
   img {
-    width: 50px;
+    max-width: 100%;
+    height: 50px;
+    box-sizing: border-box;
   }
 }
 
-// フッター
-footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid #eaeaea;
-  color: #777;
-  small {
-    float: center;
+// スマホ用：ヘッダーメニューが横棒三本になるところを境にロゴを拡大
+@media screen and (max-width: 768px) {
+  #logo {
+    img {
+      max-width: 400%;
+      height: auto;
+      box-sizing: border-box;
+    }
   }
+}
+
+// スマホ閲覧時、横棒三本をページ上部に固定
+.fh5co-nav-toggle {
+  position: fixed;
+}
+
+// ロゴの上下位置調整
+.fh5co-nav #fh5co-logo {
+  font-size: 0px;
+}
+
+//// フッター ////
+#fh5co-footer {
+  margin-top: 3em;
+  padding: 1em 0;
+  border-top: 1px solid #eaeaea;
 }
 
 //// プロフィールページ ////
@@ -147,6 +132,14 @@ footer {
 }
 
 .account-edit {
+  margin-top: 20px;
+}
+
+.account-edit {
+  margin-top: 20px;
+}
+
+.account-delete {
   margin-top: 20px;
 }
 
@@ -211,7 +204,7 @@ span.picture {
   margin-top: 3em;
 }
 
-//// 料理登録ページ ////
+//// 投稿登録ページ ////
 .input-need {
   color: red;
   font-size: 13px;
@@ -219,6 +212,38 @@ span.picture {
 
 .input-unneed {
   font-size: 13px;
+}
+
+// 投稿一覧
+.article-user {
+  text-align: right;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+h3.article-title {
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.article-description {
+  margin-top: 10px;
+}
+
+// お気に入り
+.camp-user {
+  margin-bottom: 20px;
+}
+
+// リスト
+.list-button {
+  margin-bottom: 20px;
+}
+
+// ログ
+.add-camplog {
+  font-weight: bold;
 }
 
 //// 投稿個別ページ ////
@@ -379,4 +404,25 @@ li.new_notification > a > span {
 
 .notification-message {
   font-size: 16px;
+}
+
+//// ページボディ部 ////
+#fh5co-wireframe {
+  padding-top: 7em;
+  padding-bottom: 0;
+}
+
+#fh5co-about {
+  padding: 0;
+}
+
+#fh5co-portfolio {
+  padding: 0;
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  h3 {
+    text-align: left;
+  }
 }

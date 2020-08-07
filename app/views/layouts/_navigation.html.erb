@@ -1,0 +1,50 @@
+<nav class="fh5co-nav navbar-fixed-top" role="navigation">
+  <div class="top-menu">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-2">
+          <div id="fh5co-logo">
+            <%= link_to(image_tag("/images/header_logo.jpg", :alt => "header-logo"), root_url, id: 'logo') %>
+          </div>
+        </div>
+        <div class="col-xs-10 text-right menu-1">
+          <ul>
+            <% if logged_in? %>
+              <% if current_user.notification == true %>
+                <li class="new_notification header-link">
+              <% else %>
+                <li class="no_notification header-link">
+              <% end %>
+              <%= link_to notifications_path do %><span class="fas fa-bell"></span> <span>通知</span><% end %>
+              </li>
+              <li class="header-link">
+                <%= link_to favorites_path do %><span class="fas fa-heart"></span> <span>お気に入り</span><% end %>
+              </li>
+              <li class="has-dropdown">
+                <%= link_to current_user do %>
+                  <span class="fas fa-user-cog"></span>
+                <% end %>
+                <ul class="dropdown">
+                  <li><%= link_to 'プロフィール', current_user %></li>
+                  <li><%= link_to 'ユーザー一覧', users_path %></li>
+                  <li><%= link_to 'CAMPとは？', about_path %></li>
+                  <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
+                </ul>
+              </li>
+            <% else %>
+              <li class="header-link">
+                <%= link_to about_path do %><span class="fas fa-question-circle"></span> <span>CAMPとは？</span><% end %>
+              </li>
+              <li class="header-link">
+                <%= link_to signup_path do %><span class="fas fa-user-plus"></span> <span>ユーザー登録</span><% end %>
+              </li>
+              <li class="header-link btn-cta">
+                <%= link_to login_path do %><span> ログイン</span><% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

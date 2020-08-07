@@ -1,47 +1,57 @@
 <% provide(:title, "#{@article.title}") %>
 <% @comments  = @article.feed_comment(@article.id) %>
 <% @logs  = @article.feed_log(@article.id) %>
-<div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <span class="picture">
-        <%= link_to((image_tag @article.picture.thumb200.url), article_path(@article.id), class: 'article-picture') if @article.picture.url.present? %>
-      </span>
-      <%= render 'users/favorite_form' %>
-    </div>
-    <div class="col-md-8">
-      <h2 class="article-name"><%= @article.title %></h2>
-      <div class="change-article">
-        <% if current_user == @article.user %>
-            <%= link_to "編集", edit_article_path(@article), class: 'edit-article' %>　
-        <% end %>
-        <% if current_user.admin? || (current_user == @article.user) %>
+<div id="fh5co-portfolio">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <span class="picture">
+          <%= link_to((image_tag @article.picture.thumb200.url), article_path(@article.id), class: 'article-picture') if @article.picture.url.present? %>
+        </span>
+        <%= render 'users/favorite_form' %>
+      </div>
+      <div class="col-md-8">
+        <h2 class="article-name"><%= @article.title %></h2>
+        <div class="change-article">
+          <% if current_user == @article.user %>
+            <%= link_to "編集", edit_article_path(@article), class: 'edit-article' %>
+          <% end %>
+          <% if current_user.admin? || (current_user == @article.user) %>
             <%= link_to "削除", article_path(@article), method: :delete, class: 'delete-article',
                                         data: { confirm: "本当に削除しますか？" } %>
+          <% end %>
+        </div>
+        <h4><%= @article.description %></h4>
+        <h4 class="article-reference">アイテム：<%= link_to "#{@article.reference}", @article.reference, target: "_blank" %></h4>
+        <h4 class="article-prefecture_id">場所：<%= @article.prefecture.name %></h4>
+        <div class="shooting">
+          <h5 class="title-shooting">撮影日：</h5>
+          <h5><%= @article.shooting %></h5>
+        </div>
+        <div class="show-article-other-info">
+          <div class="article-info">
+            <h5>行った回数：</h5><h4><%= @article.logs.count %></h4> <h5>回</h5>
+          </div>
+          <div class="article-info">
+            <h5>おすすめ度：</h5>
+            <h4>
+              <% if @article.popularity.present? %>
+                <%= "★" * @article.popularity %><%= "☆" * (5 - @article.popularity) %>
+              <% end %>
+            </h4>
+          </div>
+        </div>
+        <% if current_user == @article.user %>
+          <div class="log">
+            <%= render "logs/feed_logs" %>
+            <%= render "logs/new" %>
+          </div>
         <% end %>
+        <div class="comment">
+          <%= render "comments/feed_comments" %>
+          <%= render "comments/new" %>
+        </div>
       </div>
-    </div>
-    <h4><%= @article.description %></h4>
-    <h4 class="article-reference">アイテム：<%= link_to "#{@article.reference}", @article.reference, target: "_blank" %></h4>
-    <h4 class="article-prefecture_id">場所：<%= @article.prefecture.name %></h4>
-    <div class="shooting">
-      <h5 class="title-shooting">撮影日：</h5>
-      <h5><%= @article.shooting %></h5>
-    </div>
-    <div class="show-article-other-info">
-      <div class="article-info">
-        <h5>おすすめ度：</h5><h4><%= @article.popularity %></h4>
-      </div>
-    </div>
-    <% if current_user == @article.user %>
-      <div class="log">
-        <%= render "logs/feed_logs" %>
-        <%= render "logs/new" %>
-      </div>
-    <% end %>
-    <div class="comment">
-      <%= render "comments/feed_comments" %>
-      <%= render "comments/new" %>
     </div>
   </div>
 </div>

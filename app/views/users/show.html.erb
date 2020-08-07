@@ -1,37 +1,51 @@
 <% provide(:title, "プロフィール") %>
-<div class="container">
-  <h3 class="title-profile">プロフィール</h3>
-  <div class="row">
-    <div class="col-md-4">
-      <div class="user-picture-box">
-        <%= gravatar_for @user, size: 120, cl: "gravatar user-picture" %>
-      </div>
-    </div>
-    <div class="col-md-8">
-      <h4 class="show-user-name"><%= @user.name %></h4>　<%= @user.sex %>
-      <div>
-        <%= @user.introduction %>
-      </div>
-      <section class="stats">
-        <%= render 'shared/stats' %>
-      </section>
-      <% if current_user == @user %>
-        <div class="account-edit">
-          <%= link_to "プロフィール編集", edit_user_path(@user) %>
+<div id="fh5co-portfolio">
+  <div class="container">
+    <div class="row profile">
+      <div class="col-md-9">
+        <h3 class="title-profile">プロフィール</h3>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="user-picture-box">
+              <%= gravatar_for @user, size: 120, cl: "gravatar user-picture" %>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <h4 class="show-user-name"><%= @user.name %></h4>　<%= @user.sex %>
+            <div class="show-user-introduction">
+              <%= @user.introduction %>
+            </div>
+            <section class="stats">
+              <%= render 'shared/stats' %>
+            </section>
+            <% if current_user == @user %>
+              <div class="account-edit"><%= link_to "プロフィール編集", edit_user_path(@user) %></div>
+            <% end %>
+            <% if current_user.admin? || (current_user == @user) %>
+              <div class="account-delete"><%= link_to "アカウント削除", user_path(@user), method: :delete,
+                                            data: { confirm: "本当に削除しますか？" } %></div>
+            <% end %>
+            <br>
+            <%= render 'follow_form' if logged_in? %>
+          </div>
         </div>
-      <% end %>
-      <%= render 'follow_form' if logged_in? %>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-9">
-      <% if @user.articles.any? %>
-        <h3>投稿 (<%= @user.articles.count %>)</h3>
-        <ol class="articles">
-          <%= render @articles %>
-        </ol>
-        <%= will_paginate @articles %>
-      <% end %>
+    <div class="row">
+      <div class="col-md-9">
+        <% if @user.articles.any? %>
+          <h3>投稿 (<%= @user.articles.count %>)</h3>
+          <ol class="articles">
+            <%= render @articles %>
+          </ol>
+          <%= will_paginate @articles %>
+        <% end %>
+      </div>
+      <div class="col-md-3">
+        <p><%= link_to "新しい投稿を作る", "#", class: "btn btn-primary btn-lg btn-demo btn-record" %></p>
+        <br>
+        <p><%= link_to "みんなの投稿をCSV出力", articles_path(format: :csv), class: "btn btn-primary btn-lg btn-demo btn-csv" %></p>
+      </div>
     </div>
   </div>
 </div>
