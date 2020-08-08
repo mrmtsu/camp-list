@@ -36,7 +36,7 @@
             <h5>おすすめ度：</h5>
             <h4>
               <% if @article.popularity.present? %>
-                <%= "★" * @article.popularity %><%= "☆" * (5 - @article.popularity) %>
+                <span id="popularity-icon"><%= "★" * @article.popularity %><%= "☆" * (5 - @article.popularity) %></span>
               <% end %>
             </h4>
           </div>
