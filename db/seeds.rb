@@ -73,7 +73,7 @@ Article.create!(
     },
     {
       title: "スープ",
-      user_id: 1,
+      user_id: 3,
       description: description1,
       reference: "https://ec.snowpeak.co.jp/snowpeak/ja/%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%86%E3%83%B3/c/2020000?q=%3Acreationtime%3Amountaineering%3A2020070&text=",
       prefecture_id: 1,
@@ -83,7 +83,7 @@ Article.create!(
     },
     {
       title: "ジオドーム",
-      user_id: 2,
+      user_id: 1,
       description: description2,
       reference: "https://www.goldwin.co.jp/ap/item/i/m/NV21800",
       prefecture_id: 1,
@@ -93,7 +93,7 @@ Article.create!(
     },
     {
       title: "焚き火",
-      user_id: 3,
+      user_id: 2,
       description: description3,
       reference: "https://www.uniflame.co.jp/product/683040",
       prefecture_id: 1,
@@ -104,7 +104,7 @@ Article.create!(
     },
     {
       title: "スープ",
-      user_id: 1,
+      user_id: 2,
       description: description1,
       reference: "https://ec.snowpeak.co.jp/snowpeak/ja/%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%86%E3%83%B3/c/2020000?q=%3Acreationtime%3Amountaineering%3A2020070&text=",
       prefecture_id: 1,
@@ -114,7 +114,7 @@ Article.create!(
     },
     {
       title: "ジオドーム",
-      user_id: 2,
+      user_id: 3,
       description: description2,
       reference: "https://www.goldwin.co.jp/ap/item/i/m/NV21800",
       prefecture_id: 1,
@@ -124,7 +124,7 @@ Article.create!(
     },
     {
       title: "焚き火",
-      user_id: 3,
+      user_id: 1,
       description: description3,
       reference: "https://www.uniflame.co.jp/product/683040",
       prefecture_id: 1,
@@ -145,7 +145,7 @@ Article.create!(
     },
     {
       title: "ジオドーム",
-      user_id: 2,
+      user_id: 3,
       description: description2,
       reference: "https://www.goldwin.co.jp/ap/item/i/m/NV21800",
       prefecture_id: 1,
@@ -155,7 +155,7 @@ Article.create!(
     },
     {
       title: "焚き火",
-      user_id: 3,
+      user_id: 2,
       description: description3,
       reference: "https://www.uniflame.co.jp/product/683040",
       prefecture_id: 1,
@@ -166,7 +166,7 @@ Article.create!(
     },
     {
       title: "スープ",
-      user_id: 1,
+      user_id: 3,
       description: description1,
       reference: "https://ec.snowpeak.co.jp/snowpeak/ja/%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%86%E3%83%B3/c/2020000?q=%3Acreationtime%3Amountaineering%3A2020070&text=",
       prefecture_id: 1,
@@ -186,7 +186,7 @@ Article.create!(
     },
     {
       title: "焚き火",
-      user_id: 3,
+      user_id: 1,
       description: description3,
       reference: "https://www.uniflame.co.jp/product/683040",
       prefecture_id: 1,

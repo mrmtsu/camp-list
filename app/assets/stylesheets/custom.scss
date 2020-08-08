@@ -110,6 +110,27 @@ input {
   border-top: 1px solid #eaeaea;
 }
 
+//// トップページ（ログイン前） ////
+.recruit-login {
+  background-color: azure;
+  padding: 20px;
+  border: solid 1px #000000;
+}
+
+.title-form {
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.description-form {
+  margin-bottom: 20px;
+}
+
+.recruit-account {
+  margin-top: 20px;
+}
+
 //// プロフィールページ ////
 .title-profile {
   padding-bottom: 10px;
