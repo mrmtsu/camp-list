@@ -8,7 +8,7 @@
       <div class="col-md-3">
         <p><%= link_to "NEW POST", new_article_path, class: "btn btn-primary btn-lg btn-demo btn-record" %></p>
         <br>
-        <p><%= link_to "みんなの投稿をCSV出力", "#", class: "btn btn-primary btn-lg btn-demo btn-csv" %></p>
+        <p><%= link_to "みんなの投稿をCSV出力", articles_path(format: :csv), class: "btn btn-primary btn-lg btn-demo btn-csv" %></p>
       </div>
     </div>
   </div>
