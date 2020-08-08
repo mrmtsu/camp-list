@@ -14,10 +14,10 @@
       <div class="article-other-info">
         <span class="prefecture_id">場所：<%= article.prefecture.name %></span>
         <span class="camp_times">行った回数：<%= article.logs.count %>回　</span>
-        <span class="shooting">撮影日：<%= article.shooting %></span>
+        <span class="shooting">撮影日：<%= article.shooting %></span><br>
         <span class="popularity">おすすめ度：
           <% if @article.popularity.present? %>
-            <%= "★" * article.popularity %><%= "☆" * (5 - article.popularity) %>
+            <span id="popularity-icon"><%= "★" * article.popularity %><%= "☆" * (5 - article.popularity) %></span>
           <% end %>
         </span>
       </div>
