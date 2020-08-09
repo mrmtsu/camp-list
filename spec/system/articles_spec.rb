@@ -188,38 +188,6 @@ RSpec.describe "Articles", type: :system do
           expect(page).not_to have_button "作る"
         end
       end
-
-      context "トップページから" do
-        it "自分の投稿に対するログ登録が正常に完了すること" do
-          login_for_system(user)
-          visit root_path
-          fill_in "log_content", with: "ログ投稿テスト"
-          click_button "追加"
-          expect(Log.first.content).to eq 'ログ投稿テスト'
-          expect(page).to have_content "キャンプログを追加しました！"
-        end
-
-        it "別ユーザーの投稿にはログ登録フォームがないこと" do
-          create(:article, user: other_user)
-          login_for_system(user)
-          user.follow(other_user)
-          visit root_path
-          within find("#article-#{Article.first.id}") do
-            expect(page).not_to have_button "作る"
-          end
-        end
-      end
-
-      context "プロフィールページから" do
-        it "自分の投稿に対するログ登録が正常に完了すること" do
-          login_for_system(user)
-          visit user_path(user)
-          fill_in "log_content", with: "ログ投稿テスト"
-          click_button "追加"
-          expect(Log.first.content).to eq 'ログ投稿テスト'
-          expect(page).to have_content "キャンプログを追加しました！"
-        end
-      end
     end
   end
 
@@ -231,8 +199,6 @@ RSpec.describe "Articles", type: :system do
       end
 
       it "ログイン後の各ページに検索窓が表示されていること" do
-        expect(page).to have_css 'form#article_search'
-        visit about_path
         expect(page).to have_css 'form#article_search'
         visit users_path
         expect(page).to have_css 'form#article_search'
@@ -260,33 +226,17 @@ RSpec.describe "Articles", type: :system do
         create(:article, title: '野菜炒め', user: user)
         create(:article, title: '野菜カレー', user: other_user)
 
-        # 誰もフォローしない場合
         fill_in 'q_title_cont', with: 'キャンプ'
         click_button '検索'
         expect(page).to have_css 'h3', text: "”キャンプ”の検索結果：1件"
-        within find('.articles') do
+        within find('.articles-main') do
           expect(page).to have_css 'li', count: 1
         end
         fill_in 'q_title_cont', with: '野菜'
         click_button '検索'
         expect(page).to have_css 'h3', text: "”野菜”の検索結果：1件"
-        within find('.articles') do
+        within find('.articles-main') do
           expect(page).to have_css 'li', count: 1
-        end
-
-        # other_userをフォローする場合
-        user.follow(other_user)
-        fill_in 'q_title_cont', with: 'キャンプ'
-        click_button '検索'
-        expect(page).to have_css 'h3', text: "”キャンプ”の検索結果：2件"
-        within find('.articles') do
-          expect(page).to have_css 'li', count: 2
-        end
-        fill_in 'q_title_cont', with: '野菜'
-        click_button '検索'
-        expect(page).to have_css 'h3', text: "”野菜”の検索結果：2件"
-        within find('.articles') do
-          expect(page).to have_css 'li', count: 2
         end
       end
 
@@ -294,7 +244,7 @@ RSpec.describe "Articles", type: :system do
         fill_in 'q_title_cont', with: ''
         click_button '検索'
         expect(page).to have_css 'h3', text: "投稿一覧"
-        within find('.articles') do
+        within find('.articles-main') do
           expect(page).to have_css 'li', count: Article.count
         end
       end
@@ -316,14 +266,14 @@ RSpec.describe "Articles", type: :system do
 
       it "トップページからCSV出力が行えること" do
         visit root_path
-        click_link 'みんなの投稿をCSV出力'
+        click_link 'CSV出力'
         expect(page.response_headers['Content-Disposition']).to \
           include("みんなの投稿一覧_#{Time.current.strftime('%Y%m%d_%H%M')}.csv")
       end
 
       it "プロフィールページからCSV出力が行えること" do
         visit user_path(user)
-        click_link 'みんなの投稿をCSV出力'
+        click_link 'CSV出力'
         expect(page.response_headers['Content-Disposition']).to \
           include("みんなの投稿一覧_#{Time.current.strftime('%Y%m%d_%H%M')}.csv")
       end
