@@ -4,7 +4,7 @@
     <div class="col-md-4" id="articles-photo">
       <div class="fh5co-blog animate-box fadeInUp animated-fast">
         <span>
-          <%= link_to((image_tag article.picture.thumb200.url), article_path(article.id), class: 'article-picture') if article.picture.url.present? %>
+          <%= link_to((image_tag article.picture.thumb200.url), article_path(article.id), class: 'article-picture', id: "article-picture-list") if article.picture.url.present? %>
         </span>
         <%= render 'users/favorite_form' %>
         <div class="blog-text">
