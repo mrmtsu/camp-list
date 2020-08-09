@@ -153,6 +153,11 @@ input {
   border-color: palegreen;
 }
 
+#post-list {
+  position: fixed;
+  top: 20px;
+}
+
 //// ヘッダー ////
 .menu-1 a:hover {
   text-decoration: none;
@@ -271,6 +276,32 @@ input {
 }
 
 /* 投稿(Article) */
+#articles-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#articles-top {
+  width: 100%;
+}
+
+.articles-main {
+  width: 30%;
+  padding: 0;
+  margin: 10px;
+}
+
+#articles-main_list {
+  width: 100%;
+  margin: 0;
+}
+
+#articles-photo {
+  padding: 0;
+  width: 100%;
+}
+
 .articles {
   list-style: none;
   padding: 0;
@@ -383,8 +414,8 @@ h2.article-title {
 }
 
 .shooting {
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin: 10px 0;
+  margin-bottom: 0px;
   h5 {
     font-size: 17px;
   }
@@ -404,7 +435,6 @@ h2.article-title {
 
 .article-other-info {
   margin-top: 10px;
-  margin-bottom: 20px;
 }
 
 .article-info {
@@ -427,8 +457,8 @@ h2.article-title {
 }
 
 .article-picture img {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 300px;
   box-sizing: border-box;
 }
 

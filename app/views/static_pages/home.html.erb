@@ -13,16 +13,16 @@
 </nav>
 
 <% if logged_in? %>
+  <div class="col-md-3" id="post-list">
+    <p><%= link_to "NEW POST", new_article_path, class: "btn btn-primary btn-lg btn-demo btn-record" %></p>
+    <br>
+    <p><%= link_to "CSV出力", articles_path(format: :csv), class: "btn btn-primary btn-lg btn-demo btn-csv" %></p>
+  </div>
   <div id="fh5co-portfolio">
     <div class="container">
-      <div class="col-md-9">
+      <div class="col-md-9" id="articles-top">
         <h3>CAMP LIST (<%= @feed_items.count %>)</h3>
         <%= render 'shared/feed' %>
-      </div>
-      <div class="col-md-3">
-        <p><%= link_to "NEW POST", new_article_path, class: "btn btn-primary btn-lg btn-demo btn-record" %></p>
-        <br>
-        <p><%= link_to "みんなの投稿をCSV出力", articles_path(format: :csv), class: "btn btn-primary btn-lg btn-demo btn-csv" %></p>
       </div>
     </div>
   </div>
