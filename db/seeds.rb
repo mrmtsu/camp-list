@@ -31,7 +31,7 @@ user3.follow(user1)
 user3.follow(user2)
 
 # 投稿
-description1 = "超簡単！これぞキャンプ飯です！"
+description1 = "超簡単！これぞキャンプ飯！"
 description2 = "この前買ったテントを初使用！"
 description3 = "焚き火はいいなぁ"
 camp_memo1 = "次までに作れる料理を増やしておこう。"
