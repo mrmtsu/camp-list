@@ -18,5 +18,6 @@ deploy:
     docker push registry.heroku.com/$HEROKU_APP_NAME/web;
     heroku pg:reset DATABASE_URL -a $HEROKU_APP_NAME --confirm $HEROKU_APP_NAME;
     heroku run --app $HEROKU_APP_NAME rails db:migrate;
+    heroku run --app $HEROKU_APP_NAME rails db:seed;
   on:
     branch: master
