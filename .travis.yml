@@ -16,7 +16,7 @@ deploy:
   script:
     docker build -t registry.heroku.com/$HEROKU_APP_NAME/web -f Dockerfile.prod .;
     docker push registry.heroku.com/$HEROKU_APP_NAME/web;
-    heroku pg:reset --app $HEROKU_APP_NAME;
+    heroku pg:reset DATABASE_URL -a $HEROKU_APP_NAME --confirm $HEROKU_APP_NAME;
     heroku run --app $HEROKU_APP_NAME rails db:migrate;
   on:
     branch: master
