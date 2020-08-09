@@ -35,7 +35,7 @@
       <div class="col-md-9">
         <% if @user.articles.any? %>
           <h3>投稿 (<%= @user.articles.count %>)</h3>
-          <ol class="articles">
+          <ol class="articles" id="articles-list">
             <%= render @articles %>
           </ol>
           <%= will_paginate @articles %>
@@ -44,7 +44,7 @@
       <div class="col-md-3">
         <p><%= link_to "NEW POST", new_article_path, class: "btn btn-primary btn-lg btn-demo btn-record" %></p>
         <br>
-        <p><%= link_to "みんなの投稿をCSV出力", articles_path(format: :csv), class: "btn btn-primary btn-lg btn-demo btn-csv" %></p>
+        <p><%= link_to "CSV出力", articles_path(format: :csv), class: "btn btn-primary btn-lg btn-demo btn-csv" %></p>
       </div>
     </div>
   </div>

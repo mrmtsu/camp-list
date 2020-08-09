@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-md-4">
         <span class="picture">
-          <%= link_to((image_tag @article.picture.thumb200.url), article_path(@article.id), class: 'article-picture') if @article.picture.url.present? %>
+          <%= link_to((image_tag @article.picture.thumb200.url), article_path(@article.id), class: 'article-picture', id: 'article-picture-list') if @article.picture.url.present? %>
         </span>
         <%= render 'users/favorite_form' %>
       </div>
@@ -24,7 +24,7 @@
         <h4><%= @article.description %></h4>
         <h4 class="article-reference">アイテム：<%= link_to "", @article.reference, target: "_blank", class: "fas fa-shopping-bag" %></h4>
         <h4 class="article-prefecture_id">場所：<%= @article.prefecture.name %></h4>
-        <div class="shooting">
+        <div class="shooting" id="shooting-top">
           <h5 class="title-shooting">撮影日：</h5>
           <h5><%= @article.shooting %></h5>
         </div>
