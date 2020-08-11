@@ -26,3 +26,86 @@
 # 環境
 
 - CI / Docker / Ruby / Ruby on Rails / Postgresql / Javascript / S3 / Heroku / GitHub / Travis
+
+
+## usersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|email|string|null: false|
+|introduction|text||
+|sex|string||
+|password_digest|string|null: false|
+|remember_digest|string||
+|admin|boolean||
+|boolean|boolean||
+### Association
+- has_many :articles
+- has_many :comments
+- has_many :favorite
+
+
+## articlesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|title|text|null: false|
+|description|text|null: false|
+|reference|text||
+|prefecture_id|integer||
+|shooting|date||
+|popularity|integer||
+|camp_memo|text||
+|picture|string||
+|user|references|foreign_key: true|
+### Association
+- belongs_to :user
+- has_many :comments
+
+## commentsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|text|text|null: false|
+|user|references|foreign_key: true|
+|article|references|foreign_key: true|
+### Association
+- belongs_to :article
+- belongs_to :user
+
+## relationshipsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|article_id|integer|null: false, foreign_key: true|
+### Association
+- belongs_to :article
+- belongs_to :user
+
+## logsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|article_id|integer||
+|content|text||
+### Association
+- belongs_to :article
+
+
+## notificationsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer||
+|article_id|integer||
+|variety|integer||
+|content|text||
+|from_user_id|integer||
+### Association
+- belongs_to :user
+- belongs_to :article
+
+## favoritesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user|references|null: false|
+|article|references|null: false|
+### Association
+- belongs_to :article
+- belongs_to :user
