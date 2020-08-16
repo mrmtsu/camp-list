@@ -1,13 +1,28 @@
 version: 2.1
-orbs:
-  ruby: circleci/ruby@0.1.2 
-
 jobs:
   build:
-    docker:
-      - image: circleci/ruby:2.6.3-stretch-node
-    executor: ruby/default
+    machine:
+      image: circleci/classic:edge
     steps:
-      - run: echo "Hello World"
-
-    
+      - checkout
+      - run:
+        name: Dockerコンテナのビルド
+        command: docker-compose build
+      - run:
+        name: Dockerコンテナの起動
+        command: docker-compose up -d
+      - run:
+        name: "10秒待機させる"
+        command: sleep 10
+      - run:
+        name: データベースの作成
+        command: docker-compose run web rails db:create RAILS_ENV=test
+      - run:
+        name: データベースのセットアップ
+        command: docker-compose run web rails db:migrate RAILS_ENV=test
+      - run:
+        name: RSpecテスト実行
+        command: docker-compose run web bundle exec bin/rspec
+      - run:
+        name: Dockerコンテナの停止
+        command: docker-compose down

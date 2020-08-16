@@ -1,24 +1,24 @@
-sudo: required
+# sudo: required
 
-services: docker
+# services: docker
 
-before_install:
-  - docker-compose up --build -d
-  - docker login -u "$HEROKU_USERNAME" -p "$HEROKU_API_KEY" registry.heroku.com
+# before_install:
+#   - docker-compose up --build -d
+#   - docker login -u "$HEROKU_USERNAME" -p "$HEROKU_API_KEY" registry.heroku.com
 
-script:
-  - docker-compose exec --env 'RAILS_ENV=test' web rails db:create
-  - docker-compose exec --env 'RAILS_ENV=test' web rails db:migrate
-  - docker-compose exec --env 'RAILS_ENV=test' web bin/rspec
+# script:
+#   - docker-compose exec --env 'RAILS_ENV=test' web rails db:create
+#   - docker-compose exec --env 'RAILS_ENV=test' web rails db:migrate
+#   - docker-compose exec --env 'RAILS_ENV=test' web bin/rspec
 
-deploy:
-  skip_cleanup: true
-  provider: script
-  script:
-    docker build -t registry.heroku.com/$HEROKU_APP_NAME/web -f Dockerfile.prod .;
-    docker push registry.heroku.com/$HEROKU_APP_NAME/web;
-    heroku pg:reset DATABASE_URL -a $HEROKU_APP_NAME --confirm $HEROKU_APP_NAME;
-    heroku run --app $HEROKU_APP_NAME rails db:migrate;
-    heroku run --app $HEROKU_APP_NAME rails db:seed;
-  on:
-    branch: master
+# deploy:
+#   skip_cleanup: true
+#   provider: script
+#   script:
+#     docker build -t registry.heroku.com/$HEROKU_APP_NAME/web -f Dockerfile.prod .;
+#     docker push registry.heroku.com/$HEROKU_APP_NAME/web;
+#     heroku pg:reset DATABASE_URL -a $HEROKU_APP_NAME --confirm $HEROKU_APP_NAME;
+#     heroku run --app $HEROKU_APP_NAME rails db:migrate;
+#     heroku run --app $HEROKU_APP_NAME rails db:seed;
+#   on:
+#     branch: master
