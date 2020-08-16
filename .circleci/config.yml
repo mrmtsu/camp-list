@@ -3,6 +3,7 @@ jobs:
   build:
     machine:
       image: circleci/classic:edge
+    working_directory: ~/camp-photo
     steps:
       - checkout
       - run:
