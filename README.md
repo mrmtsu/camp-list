@@ -1,14 +1,15 @@
 # CAMP
 ![ポートフォリオ](https://user-images.githubusercontent.com/60598010/90415214-c11c1180-e0eb-11ea-91e3-c7595aa23e5d.jpg)
-<br>
+ <br>
 
 # アプリケーションの概要
 
 - キャンプスタイルを記録して共有できる SNS サービス。
 - https://camp-photo0806.herokuapp.com/
-<br>
+
+ <br>
+
 ## 制作背景
-- ❶
 - ❶ キャンプを始めたいけど参考になるものがない。<br>
 　（雑誌だと１ヶ月待たないといけない・Webサイトは広告が多く押し付け感が強い）
 - ❷ 前回のキャンプで「もっとこうした方がよかった」・「次はあれを持ってこよう」などといったその時々に思いついたことを忘れてしまい次に活かせない。
@@ -32,19 +33,21 @@
 - ログイン機能
 - ログイン状態の保持機能
 - モデルに対するバリデーション
-<br>
+
+ <br>
+ 
 - RSpec で Model, Request, System テスト記述（計 177examples）
 - Ajax を用いた非同期処理（フォロー/未フォロー、お気に入り登録/未登録などの切り替え表示）
 - Docker を用いた開発
 - 自動テスト化（CI）
 - 自動デプロイ化（CD）
 - 画像をS３へアップロード
-<br>
+ <br>
 
 # 環境
 
 - CI / Docker / Ruby / Ruby on Rails / Postgresql / Javascript / S3 / Heroku / GitHub / Travis
-<br>
+ <br>
 
 ## usersテーブル
 |Column|Type|Options|
