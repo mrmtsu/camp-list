@@ -1,7 +1,12 @@
+# CAMP
+![ポートフォリオ](https://user-images.githubusercontent.com/60598010/90415214-c11c1180-e0eb-11ea-91e3-c7595aa23e5d.jpg)
+<br>
+
 # アプリケーションの概要
 
 - キャンプスタイルを記録して共有できる SNS サービス。
 - https://camp-photo0806.herokuapp.com/
+<br>
 
 # アプリケーション機能
 
@@ -22,11 +27,12 @@
 - Docker を用いた開発
 - 自動テスト化（CI）
 - 画像を S ３へアップロード
+<br>
 
 # 環境
 
 - CI / Docker / Ruby / Ruby on Rails / Postgresql / Javascript / S3 / Heroku / GitHub / Travis
-
+<br>
 
 ## usersテーブル
 |Column|Type|Options|
