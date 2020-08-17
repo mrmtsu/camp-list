@@ -1,13 +1,27 @@
 version: 2.1
-orbs:
-  ruby: circleci/ruby@0.1.2 
-
 jobs:
   build:
-    docker:
-      - image: circleci/ruby:2.6.3-stretch-node
-    executor: ruby/default
+    machine:
+      image: circleci/classic:edge
+    environment:
+      RAILS_ENV: test
     steps:
-      - run: echo "Hello World"
-
-    
+      - checkout
+      - run:
+          name: docker-compose build
+          command: docker-compose build
+      - run:
+          name: docker-compose up
+          command: docker-compose up -d
+      - run:
+          name: sleep for waiting launch db
+          command: sleep 1
+      - run:
+          name: create db
+          command: docker-compose run web rails db:create
+      - run:
+          name: test
+          command: docker-compose run web bin/rspec
+      - run:
+          name: docker-compose down
+          command: docker-compose down
