@@ -3,7 +3,7 @@ jobs:
   build:
     parallelism: 3
     docker:
-      - image: circleci/ruby:2.4.2-jessie-node
+      - image: circleci/ruby:2.5.8-jessie-node
         environment:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
@@ -13,8 +13,8 @@ jobs:
           RAILS_ENV: test
       - image: circleci/postgres:9.5-alpine
         environment:
-          POSTGRES_USER: circleci-demo-ruby
-          POSTGRES_DB: rails_blog
+          POSTGRES_USER: postgres
+          POSTGRES_DB: camp-photo
           POSTGRES_PASSWORD: postgres
     steps:
       - checkout
