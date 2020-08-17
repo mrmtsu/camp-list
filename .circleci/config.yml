@@ -57,7 +57,7 @@
 
 version: 2.1
 jobs:
-  test:
+  build:
     machine:
       image: circleci/classic:edge
     environment:
