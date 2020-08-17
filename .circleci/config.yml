@@ -42,7 +42,7 @@ jobs:
           name: データベースのセットアップ
           command: |
             bin/rails db:create
-            bin/rails db:schema:load
+            bin/rails db:migrate
 
       - run:
           name: RSpec の並列実行
